@@ -5,7 +5,6 @@
 <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg" /><br>
 <br>
 a small project to quickly make rickrolls from local files or URLs
-<img src="https://us-east-1.tixte.net/uploads/img.dhravya.dev/l0l2bx64v0a.png" alt="Rickroll Maker" width="500">
 </div>
 
 ***
@@ -13,7 +12,7 @@ a small project to quickly make rickrolls from local files or URLs
 
 ### Installation
 ```
-cd Rickroll Maker
+cd rickroll-maker
 pip install -r requirements.txt
 ```
 
