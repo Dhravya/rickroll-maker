@@ -3,7 +3,6 @@ import sys
 
 import requests
 from moviepy.editor import VideoFileClip, concatenate_videoclips
-from rich.prompt import Prompt
 from rich.progress import (
     BarColumn,
     DownloadColumn,
@@ -43,10 +42,6 @@ class Rickroller:
 
         final_clip.write_videofile(output_path)
 
-        # Deletes the temporary files
-        delete = Prompt.ask("Delete temporary files?", default="yes")
-        if delete == "yes":
-            os.remove(clip_path)
 
     def __do_download(self, url) -> str:
         """
