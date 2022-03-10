@@ -33,11 +33,11 @@ class Rickroller:
         :param output_path: The path to the output file. Default is output.mp4
         :return: None
         """
-        rickroll = VideoFileClip("rickroll.mp4")
+        rickroll = VideoFileClip(rickroll_path)
 
         # Check if clip_path is a URL, if yes, downloads it and changes the clip_path
         clip_path = self.__download_if_url(clip_path)
-        rickroll_path = self.__download_if_url(rickroll_path)
+        rickroll_path = self.__download_if_url(rickroll)
 
         clip2 = VideoFileClip(clip_path)
         clip2 = clip2.subclip(0, clip2.duration - cut_len)
