@@ -3,3 +3,5 @@ env/
 .vscode/
 output.mp4
 rickrolls/
+raw.mp4
+__pycache__/
