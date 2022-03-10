@@ -1,4 +1,4 @@
-import sys 
+import sys
 
 import requests
 from moviepy.editor import VideoFileClip, concatenate_videoclips
@@ -10,6 +10,7 @@ from rich.progress import (
     TimeRemainingColumn,
     TransferSpeedColumn,
 )
+from rich import print
 
 
 class Rickroller:
@@ -41,6 +42,7 @@ class Rickroller:
 
         final_clip.write_videofile(output_path)
 
+        print(f"[bold green]Rickroll saved to {output_path}[/bold green]")
 
     def __do_download(self, url) -> str:
         """
@@ -76,12 +78,11 @@ class Rickroller:
                     if chunk:
                         f.write(chunk)
                         progress.update(task_id, total=total, completed=f.tell())
-        
+
         progress.console.log("Download complete")
 
         # This returns the filepath of downloaded
         return url.split("/")[-1]
-        
 
     def __download_if_url(self, url: str):
         """
@@ -90,8 +91,9 @@ class Rickroller:
         """
         if url.startswith("http"):
             url = self.__do_download(url)
-        
+
         return url
+
 
 if __name__ == "__main__":
     rickroller = Rickroller()
