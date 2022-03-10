@@ -1,7 +1,7 @@
 import sys
 
 import requests
-from moviepy.editor import VideoFileClip, concatenate_videoclips
+from moviepy.editor import VideoFileClip, concatenate_videoclips, TextClip
 from rich.progress import (
     BarColumn,
     DownloadColumn,
@@ -24,6 +24,7 @@ class Rickroller:
         output_path: str = "output.mp4",
         rickroll_path: str = "rickroll.mp4",
         rickroll_len: int = 15,
+        cut_len:int = 15
     ):
         """
         Generates the rickroll itself. Essentially just concatenates the
@@ -39,10 +40,10 @@ class Rickroller:
         rickroll_path = self.__download_if_url(rickroll_path)
 
         clip2 = VideoFileClip(clip_path)
-        clip2 = clip2.subclip(0, clip2.duration - rickroll_len)
+        clip2 = clip2.subclip(0, clip2.duration - cut_len)
 
         # We only want the first 15 seconds
-        rickroll = rickroll.subclip(0.5, 15).resize(width=clip2.w)
+        rickroll = rickroll.subclip(0.5, rickroll_len).resize(width=clip2.w)
 
         # Concatenate the two clips
         final_clip = concatenate_videoclips([clip2, rickroll], method="compose")
