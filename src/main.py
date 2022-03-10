@@ -18,7 +18,13 @@ class Rickroller:
     Rickroller class, contains everything required for generating rickrolls
     """
 
-    def make(self, clip_path: str, output_path="output.mp4"):
+    def make(
+        self,
+        clip_path: str,
+        output_path: str = "output.mp4",
+        rickroll_path: str = "rickroll.mp4",
+        rickroll_len: int = 15,
+    ):
         """
         Generates the rickroll itself. Essentially just concatenates the
         video clips together.
@@ -30,9 +36,10 @@ class Rickroller:
 
         # Check if clip_path is a URL, if yes, downloads it and changes the clip_path
         clip_path = self.__download_if_url(clip_path)
+        rickroll_path = self.__download_if_url(rickroll_path)
 
         clip2 = VideoFileClip(clip_path)
-        clip2 = clip2.subclip(0, clip2.duration - 15)
+        clip2 = clip2.subclip(0, clip2.duration - rickroll_len)
 
         # We only want the first 15 seconds
         rickroll = rickroll.subclip(0.5, 15).resize(width=clip2.w)
