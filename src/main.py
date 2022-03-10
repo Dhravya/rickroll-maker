@@ -24,7 +24,7 @@ class Rickroller:
         output_path: str = "output.mp4",
         rickroll_path: str = "rickroll.mp4",
         rickroll_len: int = 15,
-        cut_len:int = 15
+        cut_len: int = 15,
     ):
         """
         Generates the rickroll itself. Essentially just concatenates the
@@ -108,3 +108,4 @@ if __name__ == "__main__":
 
     # Can be used as a standalone script
     rickroller.make(sys.argv[1])
+
