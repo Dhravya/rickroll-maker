@@ -1,2 +1,4 @@
 moviepy
 rich
+fastapi
+slowapi

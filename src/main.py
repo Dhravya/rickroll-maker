@@ -1,7 +1,7 @@
 import sys
 
 import requests
-from moviepy.editor import VideoFileClip, concatenate_videoclips, TextClip
+from moviepy.editor import VideoFileClip, concatenate_videoclips
 from rich.progress import (
     BarColumn,
     DownloadColumn,
@@ -33,11 +33,11 @@ class Rickroller:
         :param output_path: The path to the output file. Default is output.mp4
         :return: None
         """
-        rickroll = VideoFileClip(rickroll_path)
 
         # Check if clip_path is a URL, if yes, downloads it and changes the clip_path
         clip_path = self.__download_if_url(clip_path)
-        rickroll_path = self.__download_if_url(rickroll)
+        rickroll_path = self.__download_if_url(rickroll_path )
+        rickroll = VideoFileClip(rickroll_path)
 
         clip2 = VideoFileClip(clip_path)
         clip2 = clip2.subclip(0, clip2.duration - cut_len)
@@ -81,7 +81,7 @@ class Rickroller:
 
             # Getting the content length to be marked as the total length of the download
             total = int(r.headers.get("content-length"), 0)
-            with open(url.split("/")[-1], "wb") as f:
+            with open("raw.mp4", "wb") as f:
                 for chunk in r.iter_content(chunk_size=1024):
                     if chunk:
                         f.write(chunk)
@@ -90,7 +90,7 @@ class Rickroller:
         progress.console.log("Download complete")
 
         # This returns the filepath of downloaded
-        return url.split("/")[-1]
+        return "raw.mp4"
 
     def __download_if_url(self, url: str):
         """
